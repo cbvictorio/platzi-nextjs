@@ -13,7 +13,8 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "run-p -r spinner format && git add -A ."
+            "pre-commit": "run-p -r spinner format && git add -A .",
+            "pre-push": "run-p -r spinner format:check"
         }
     },
     "keywords": [],
