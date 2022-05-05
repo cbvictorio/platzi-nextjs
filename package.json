@@ -7,12 +7,13 @@
         "dev": "next",
         "build": "next build",
         "start": "next start",
+        "spinner": "node ./spinner",
         "format": "prettier --ignore-path .gitignore --write .",
         "format:check": "prettier --ignore-path .gitignore --check ."
     },
     "husky": {
         "hooks": {
-            "pre-commit": "echo \"[Husky] -> Verifying code structure...\" && yarn format && git add -A ."
+            "pre-commit": "run-p -r spinner format && git add -A ."
         }
     },
     "keywords": [],
@@ -26,7 +27,9 @@
     "devDependencies": {
         "@types/node": "^17.0.31",
         "@types/react": "^18.0.8",
+        "cli-spinner": "^0.2.10",
         "husky": "4.3.8",
+        "npm-run-all": "^4.1.5",
         "prettier": "^2.6.2",
         "typescript": "^4.6.4"
     }
