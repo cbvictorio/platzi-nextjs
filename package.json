@@ -7,12 +7,12 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "prettier": "prettier --ignore-path .gitignore --write .",
-    "lint:check": "prettier --ignore-path .gitignore --check . && tsc"
+    "format": "prettier --ignore-path .gitignore --write .",
+    "format:check": "prettier --ignore-path .gitignore --check ."
   },
   "husky": {
     "hooks": {
-      "pre-commit": "echo \"[Husky] -> pre-commit message\""
+      "pre-commit": "echo \"[Husky] -> Verifying code structure...\" && yarn format"
     }
   },
   "keywords": [],
