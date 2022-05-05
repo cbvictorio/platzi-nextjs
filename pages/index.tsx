@@ -1,6 +1,7 @@
-import Navbar from '../components/Navbar'
+import { Navbar } from 'components'
+import { FC } from 'react'
 
-const Home = () => {
+const Home: FC = () => {
     return (
         <div>
             <Navbar />

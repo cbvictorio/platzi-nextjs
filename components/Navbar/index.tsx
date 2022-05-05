@@ -1,6 +1,7 @@
+import { FC } from 'react'
 import Link from 'next/link'
 
-const Navbar = () => {
+const Navbar: FC = () => {
     return (
         <nav>
             <menu>
