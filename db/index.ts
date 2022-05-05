@@ -9,23 +9,23 @@ const customFetch = async (url: string): Promise<any> => {
         const request = await fetch(`${API_URL}/${url}`)
         const pokemon = await request.json()
         return pokemon
-    } catch(e) {
+    } catch (e) {
         return {
             error: true,
             message: 'Error from FE: could not fetch pokemon data',
-            exception: e
+            exception: e,
         }
     }
 }
 
-const getByIdOrName = async (idName: string) : Promise<any> => {
+const getByIdOrName = async (idName: string): Promise<any> => {
     const pokemonData = customFetch(`/pokemon/${idName}`)
-    // const { 
-    //     id, 
-    //     name, 
-    //     sprites, 
-    //     abilities, 
-    //     types, 
+    // const {
+    //     id,
+    //     name,
+    //     sprites,
+    //     abilities,
+    //     types,
     //     weight,
     //     location_area_encounters
     // } = pokemonData
@@ -33,7 +33,7 @@ const getByIdOrName = async (idName: string) : Promise<any> => {
 }
 
 const PokemonAPI: PokemonApiType = {
-    getByIdOrName
+    getByIdOrName,
 }
 
 export default PokemonAPI
