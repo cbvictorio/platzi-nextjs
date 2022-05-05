@@ -10,4 +10,3 @@ const getPokemonByNameOrId = async (req: IncomingMessage, res: ServerResponse): 
 }
 
 export default getPokemonByNameOrId
-
