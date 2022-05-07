@@ -1,39 +1,47 @@
 import { API_URL } from 'utils/constants'
 
-type PokemonApiType = {
-    getByIdOrName: (idName: string) => Promise<any>
-}
+const generateError = (message: string): GenericError => ({
+    error: true,
+    message,
+})
 
-const customFetch = async (url: string): Promise<any> => {
+const fetchPokemon = async (url: string): Promise<PokemonData | GenericError> => {
     try {
         const request = await fetch(`${API_URL}/${url}`)
-        const pokemon = await request.json()
+        const pokemonData = await request.json()
+
+        const { id, name, sprites, abilities, types, weight, location_area_encounters } =
+            pokemonData
+
+        const pokemon: PokemonData = {
+            id,
+            name,
+            sprites,
+            abilities,
+            types,
+            weight,
+            location_area_encounters,
+        }
+
         return pokemon
     } catch (e) {
-        return {
-            error: true,
-            message: 'Error from FE: could not fetch pokemon data',
-            exception: e,
-        }
+        console.log(e)
+        return generateError('Error from FE: could not fetch pokemon data')
     }
 }
 
-const getByIdOrName = async (idName: string): Promise<any> => {
-    const pokemonData = customFetch(`/pokemon/${idName}`)
-    // const {
-    //     id,
-    //     name,
-    //     sprites,
-    //     abilities,
-    //     types,
-    //     weight,
-    //     location_area_encounters
-    // } = pokemonData
-    return pokemonData
+const getPokemonByNameOrId = async (slug: PokemonSlug): Promise<PokemonFetchResponse> => {
+    if (!slug) return generateError('No ID or name was provided')
+    const pokemon: PokemonFetchResponse = await fetchPokemon(`/pokemon/${slug}`)
+    return pokemon
 }
 
-const PokemonAPI: PokemonApiType = {
-    getByIdOrName,
+type PokemonAPI = {
+    getPokemonByNameOrId: (slug: PokemonSlug) => Promise<PokemonFetchResponse>
+}
+
+const PokemonAPI: PokemonAPI = {
+    getPokemonByNameOrId,
 }
 
 export default PokemonAPI
