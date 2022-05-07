@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import PokemonAPI from 'db/'
+import PokemonAPI from '@/db'
 
 const getPokemonByNameOrId = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
     const slug: string | string[] = req?.query?.slug

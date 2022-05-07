@@ -1,5 +1,5 @@
 import App, { AppProps } from 'next/app'
-import Layout from 'components/Layout'
+import Layout from '@/components/Layout'
 
 /*
 - The Component prop refers to every page
