@@ -46,3 +46,9 @@ type PokemonData = {
 }
 
 type PokemonFetchResponse = PokemonData | GenericError
+
+declare namespace CustomInterfaces {
+    interface ReactChilden {
+        children: import('react').ReactNode
+    }
+}
