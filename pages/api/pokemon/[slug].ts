@@ -6,7 +6,7 @@ const getPokemonByNameOrId = async (req: NextApiRequest, res: NextApiResponse): 
     const response: PokemonFetchResponse = await PokemonAPI.getPokemonByNameOrId(slug)
 
     res.setHeader('content-type', 'application/json')
-    res.end(JSON.stringify({ data: response }))
+    res.status(200).json(response)
 }
 
 export default getPokemonByNameOrId
