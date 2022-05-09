@@ -7,6 +7,11 @@ type IProps = {
     slug?: PokemonSlug
 }
 
+/* 
+    getServerSideProps and getStaticProps can only be used on PAGES file, 
+    it cannot be used anywhere else 
+*/
+
 export const getServerSideProps = async (ctx: GetServerSidePropsCtx) => {
     const {
         query: { slug },
