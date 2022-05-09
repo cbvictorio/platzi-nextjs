@@ -1,4 +1,5 @@
 import { API_URL } from 'utils/constants'
+import 'isomorphic-fetch'
 
 const generateError = (message: string): GenericError => ({
     error: true,

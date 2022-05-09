@@ -47,6 +47,12 @@ type PokemonData = {
 
 type PokemonFetchResponse = PokemonData | GenericError
 
+type GetServerSidePropsCtx = {
+    query: {
+        slug: string
+    }
+}
+
 declare namespace CustomInterfaces {
     interface ReactChilden {
         children: import('react').ReactNode
