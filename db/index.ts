@@ -45,7 +45,7 @@ const getPokemonByPagination = async (
 ): Promise<FetchPaginatedPokemonDataResponse> => {
     const { limit, offset }: PaginationOptions = options
 
-    const paginationUrl: string = `?limit=${DEFAULT_PAGINATION_LIMIT}&offset=${offset}`
+    const paginationUrl: string = `?limit=${limit}&offset=${offset}`
 
     const fetchPaginationResults: FetchPaginatedPokemonDataResponse = await fetchPokemon(
         paginationUrl

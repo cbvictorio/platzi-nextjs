@@ -67,7 +67,7 @@ type PaginationOptions = {
 type PokemonFetchResponse = PokemonData | Array<FetchPaginatedPokemonData> | GenericError
 
 declare namespace CustomInterfaces {
-    interface ReactChilden {
+    interface ReactChildren {
         children: import('react').ReactNode
     }
 }
