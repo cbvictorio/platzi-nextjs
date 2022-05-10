@@ -3,12 +3,12 @@ import PokemonAPI from '@/db'
 import { GetStaticProps } from 'next'
 
 type IProps = {
-    pokemonData: PokemonFetchResponse
+    pokemonData: FetchSinglePokemonDataResponse
     slug?: PokemonSlug
 }
 
 const Product: FC<IProps> = ({ pokemonData, slug }: IProps) => {
-    const { id, name } = pokemonData as PokemonData
+    const { id, name } = pokemonData as SinglePokemonData
     const { error, message } = pokemonData as GenericError
 
     if (error) {
@@ -24,6 +24,8 @@ const Product: FC<IProps> = ({ pokemonData, slug }: IProps) => {
         <div>
             <h1> Pokemon ID: {id} </h1>
             <h2> Pokemon Name: {name} </h2>
+            <br />
+            <p> Pokemon Data: </p>
         </div>
     )
 }
@@ -44,7 +46,8 @@ const Product: FC<IProps> = ({ pokemonData, slug }: IProps) => {
          previously generated.
 
     For this particular case, a pokemon page has to be a SSR site, since the id or name
-    of the pokemon is dynamic, we cannot necessarily generate a static page for it.
+    of the pokemon is dynamic, we cannot necessarily generate a static page for it,
+    UNLESS, we use the `getStaticPaths` method with NextJS 
 
 */
 
@@ -58,9 +61,22 @@ const Product: FC<IProps> = ({ pokemonData, slug }: IProps) => {
 // }
 
 // SSG
+export const getStaticPaths = async () => {
+    const response = await PokemonAPI.getPokemonByPagination()
+    const { error } = response as GenericError
+    const { results } = response as PaginatedPokemonData
+
+    const paths = !error ? results.map(({ name: slug }) => ({ params: { slug } })) : []
+
+    return {
+        paths,
+        fallback: false,
+    }
+}
+
 export const getStaticProps: GetStaticProps = async ({ params }) => {
     const slug = params?.slug as string
-    const pokemonData: PokemonFetchResponse = await PokemonAPI.getPokemonByNameOrId(slug)
+    const pokemonData: FetchSinglePokemonDataResponse = await PokemonAPI.getPokemonByNameOrId(slug)
     return {
         props: { pokemonData, slug },
     }

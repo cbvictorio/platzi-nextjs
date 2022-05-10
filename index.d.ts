@@ -35,7 +35,7 @@ type PokemonSprites = {
     front_shiny_female: Url
 }
 
-type PokemonData = {
+type SinglePokemonData = {
     id: string
     name: string
     sprites: PokemonSprites
@@ -45,7 +45,26 @@ type PokemonData = {
     location_area_encounters: Url
 }
 
-type PokemonFetchResponse = PokemonData | GenericError
+type PaginatedPokemonData = {
+    count: number
+    next: Url
+    previous: Url
+    results: Array<{
+        name: string
+        url: Url
+    }>
+}
+
+type FetchSinglePokemonDataResponse = SinglePokemonData | GenericError
+
+type FetchPaginatedPokemonDataResponse = PaginatedPokemonData | GenericError
+
+type PaginationOptions = {
+    limit: number
+    offset: number
+}
+
+type PokemonFetchResponse = PokemonData | Array<FetchPaginatedPokemonData> | GenericError
 
 declare namespace CustomInterfaces {
     interface ReactChilden {
