@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import PokemonAPI from '@/db'
+import { GetStaticProps } from 'next'
 
 type IProps = {
     pokemonData: PokemonFetchResponse
@@ -47,24 +48,22 @@ const Product: FC<IProps> = ({ pokemonData, slug }: IProps) => {
 
 */
 
-export const getServerSideProps = async (ctx: GetServerSidePropsCtx) => {
-    const {
-        query: { slug },
-    } = ctx
-    const pokemonData: PokemonFetchResponse = await PokemonAPI.getPokemonByNameOrId(slug)
-    return {
-        props: { pokemonData, slug },
-    }
-}
-
-// export const getStaticProps = async (ctx: GetServerSidePropsCtx) => {
-//     const {
-//         query: { slug },
-//     } = ctx
+// SSR
+// export const getServerSideProps: GetStaticProps = async ({ params }) => {
+//     const slug = params?.slug as string
 //     const pokemonData: PokemonFetchResponse = await PokemonAPI.getPokemonByNameOrId(slug)
 //     return {
 //         props: { pokemonData, slug },
 //     }
 // }
+
+// SSG
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+    const slug = params?.slug as string
+    const pokemonData: PokemonFetchResponse = await PokemonAPI.getPokemonByNameOrId(slug)
+    return {
+        props: { pokemonData, slug },
+    }
+}
 
 export default Product
