@@ -1,3 +1,4 @@
+import Styles from '@/theme/GlobalStyles'
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 
 /*
@@ -28,7 +29,7 @@ class MyDocument extends Document {
         return (
             <Html>
                 <Head>{/* add a favi */}</Head>
-                <body className='something'>
+                <body>
                     <Main />
                     <NextScript />
                 </body>

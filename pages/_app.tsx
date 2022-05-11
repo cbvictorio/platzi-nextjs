@@ -1,5 +1,6 @@
 import { AppProps, NextWebVitalsMetric } from 'next/app'
 import Layout from '@/components/Layout'
+import GlobalStyles from '@/theme/GlobalStyles'
 
 /*
 - The Component prop refers to every page
@@ -11,14 +12,17 @@ import Layout from '@/components/Layout'
 */
 
 export function reportWebVitals(metric: NextWebVitalsMetric) {
-    console.log(metric)
+    // console.log(metric)
 }
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
     return (
-        <Layout>
-            <Component {...pageProps} />
-        </Layout>
+        <>
+            <GlobalStyles />
+            <Layout>
+                <Component {...pageProps} />
+            </Layout>
+        </>
     )
 }
 

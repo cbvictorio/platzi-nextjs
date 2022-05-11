@@ -10,11 +10,11 @@ const Home: FC<IProps> = ({ pokemons = [] }) => {
         <div>
             <h1> Hello world from Next JS !</h1>
             <ul>
-                {pokemons.map(({ name }) => (
+                {/* {pokemons.map(({ name }) => (
                     <a key={name} href={`/pokemon/${name}`}>
                         <li> {name} </li>
                     </a>
-                ))}
+                ))} */}
             </ul>
         </div>
     )

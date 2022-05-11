@@ -62,14 +62,24 @@ type FetchSinglePokemonDataResponse = SinglePokemonData | GenericError
 type FetchPaginatedPokemonDataResponse = PaginatedPokemonData | GenericError
 
 type PaginationOptions = {
-    limit: number
-    offset: number
+    readonly limit: number
+    readonly offset: number
 }
 
 type PokemonFetchResponse = PokemonData | Array<FetchPaginatedPokemonData> | GenericError
 
 declare namespace CustomInterfaces {
     interface ReactChildren {
-        children: import('react').ReactNode
+        readonly children: import('react').ReactNode
+    }
+
+    interface Theme {
+        theme: {
+            readonly primaryRed: string
+            readonly primaryBlack: string
+            sizes: {
+                maxWidth: number
+            }
+        }
     }
 }

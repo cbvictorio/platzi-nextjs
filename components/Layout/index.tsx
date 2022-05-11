@@ -1,12 +1,16 @@
 import { FC } from 'react'
 import Navbar from 'components/Navbar'
+import Footer from 'components/Footer'
+import ThemeProvider from '@/theme/ThemeProvider'
 
-const Layout: FC<CustomInterfaces.ReactChilden> = ({ children }) => {
+const Layout: FC<CustomInterfaces.ReactChildren> = ({ children }) => {
     return (
         <>
-            <Navbar />
-            {children}
-            <footer> This is a footer </footer>
+            <ThemeProvider>
+                <Navbar />
+                {children}
+                <Footer />
+            </ThemeProvider>
         </>
     )
 }
