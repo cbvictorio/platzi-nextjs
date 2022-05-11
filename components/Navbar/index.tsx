@@ -8,15 +8,21 @@ const Nav = styled.nav`
     margin: 0;
 `
 
+const StyledSection = styled(Section)`
+    border: 3px solid blue;
+`
+
 const Navbar: FC = () => {
     return (
         <Nav>
-            <Link href='/'>
-                <a> Home </a>
-            </Link>
-            <Link href='/about'>
-                <a> About </a>
-            </Link>
+            <StyledSection>
+                <Link href='/'>
+                    <a> Home </a>
+                </Link>
+                <Link href='/about'>
+                    <a> About </a>
+                </Link>
+            </StyledSection>
         </Nav>
     )
 }
