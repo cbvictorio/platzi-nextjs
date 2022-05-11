@@ -1,4 +1,4 @@
-import { AppProps } from 'next/app'
+import { AppProps, NextWebVitalsMetric } from 'next/app'
 import Layout from '@/components/Layout'
 
 /*
@@ -9,6 +9,10 @@ import Layout from '@/components/Layout'
     - Layouts (header, footers)
     - Any additional prop you can think of
 */
+
+export function reportWebVitals(metric: NextWebVitalsMetric) {
+    console.log(metric)
+}
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
     return (

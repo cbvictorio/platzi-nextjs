@@ -45,14 +45,16 @@ type SinglePokemonData = {
     location_area_encounters: Url
 }
 
+type PaginatedSinglePokemon = {
+    name: string
+    url: Url
+}
+
 type PaginatedPokemonData = {
     count: number
     next: Url
     previous: Url
-    results: Array<{
-        name: string
-        url: Url
-    }>
+    results: Array<PaginatedSinglePokemon>
 }
 
 type FetchSinglePokemonDataResponse = SinglePokemonData | GenericError

@@ -1,9 +1,8 @@
 import { FC } from 'react'
-import { GetServerSideProps } from 'next'
 import PokemonAPI from '@/db'
 
 type IProps = {
-    pokemons: Array<SinglePokemonData>
+    pokemons: Array<PaginatedSinglePokemon>
 }
 
 const Home: FC<IProps> = ({ pokemons = [] }) => {
@@ -11,9 +10,9 @@ const Home: FC<IProps> = ({ pokemons = [] }) => {
         <div>
             <h1> Hello world from Next JS !</h1>
             <ul>
-                {pokemons.map(({ id, name }) => (
-                    <a href={`/pokemon/${name}`}>
-                        <li key={id}> {name}</li>
+                {pokemons.map(({ name }) => (
+                    <a key={name} href={`/pokemon/${name}`}>
+                        <li> {name} </li>
                     </a>
                 ))}
             </ul>
