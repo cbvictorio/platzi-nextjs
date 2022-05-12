@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 const StyledFooter = styled.footer`
-    background-color: ${({ theme }: CustomInterfaces.Theme) => theme.primaryBlack};
+    background-color: ${({ theme }: CustomInterfaces.Theme) => theme.colors.primaryBlack};
 `
 
 const Footer = () => <StyledFooter>This is the footer</StyledFooter>

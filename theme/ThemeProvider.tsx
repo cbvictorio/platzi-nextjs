@@ -1,9 +1,9 @@
 import { FC } from 'react'
 import { ThemeProvider } from 'styled-components'
-import colors from './tokens'
+import tokens from './tokens'
 
 const Theme: FC<CustomInterfaces.ReactChildren> = ({ children }) => (
-    <ThemeProvider theme={colors}> {children} </ThemeProvider>
+    <ThemeProvider theme={tokens}> {children} </ThemeProvider>
 )
 
 export default Theme

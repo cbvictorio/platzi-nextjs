@@ -75,10 +75,30 @@ declare namespace CustomInterfaces {
 
     interface Theme {
         theme: {
-            readonly primaryRed: string
-            readonly primaryBlack: string
-            sizes: {
+            colors: {
+                readonly primaryRed: string
+                readonly primaryBlack: string
+                readonly secondaryRed: string
+            }
+            readonly bp: {
+                tablet: string
+                desktop: string
+            }
+            readonly section: {
                 maxWidth: number
+            }
+            readonly spaces: {
+                xs: string
+                s: string
+                m: string
+                l: string
+                xl: string
+            }
+            readonly fontSizes: {
+                default: string
+            }
+            readonly navbar: {
+                height: string
             }
         }
     }

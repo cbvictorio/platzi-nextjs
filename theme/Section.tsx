@@ -7,7 +7,7 @@ interface IProps extends CustomInterfaces.ReactChildren {
 }
 
 const StyledSection = styled.section`
-    max-width: ${({ theme }: CustomInterfaces.Theme) => `${theme.sizes.maxWidth}px`};
+    max-width: ${({ theme }: CustomInterfaces.Theme) => `${theme.section.maxWidth}px`};
     margin: auto;
 `
 
