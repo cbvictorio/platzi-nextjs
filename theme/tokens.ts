@@ -13,10 +13,10 @@ export default {
     },
     spaces: {
         xs: '8px',
-        s: '12px',
-        m: '16px',
-        l: '20px',
-        xl: '24px',
+        s: '16px',
+        m: '24px',
+        l: '32px',
+        xl: '40px',
     },
     fontSizes: {
         default: '24px',
