@@ -1,22 +1,43 @@
 import { FC } from 'react'
+import styled from 'styled-components'
+import ThemeSection from '@/theme/Section'
+import Link from 'next/link'
+import { API_URL } from '@/utils/constants'
+import PokemonCard from '@/components/PokemonCard'
 import PokemonAPI from '@/db'
 
 type IProps = {
     pokemons: Array<PaginatedSinglePokemon>
 }
 
+const Section = styled(ThemeSection)`
+    h2,
+    h3 {
+        text-align: center;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+`
+
 const Home: FC<IProps> = ({ pokemons = [] }) => {
     return (
-        <div>
-            <h1> Hello world from Next JS !</h1>
+        <Section>
+            <h2>Please click on any pokemon to start navigating, hope you enjoy it!</h2>
+            <h3>
+                This app was created with the
+                <Link href={API_URL}> PokeAPI </Link>
+            </h3>
             <ul>
-                {/* {pokemons.map(({ name }) => (
-                    <a key={name} href={`/pokemon/${name}`}>
-                        <li> {name} </li>
-                    </a>
-                ))} */}
+                {pokemons.map(({ name, url }) => (
+                    <li key={`${name}${url}`}>
+                        <PokemonCard pokemon={{ name, url }} />
+                    </li>
+                ))}
             </ul>
-        </div>
+        </Section>
     )
 }
 

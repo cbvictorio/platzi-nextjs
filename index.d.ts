@@ -79,6 +79,7 @@ declare namespace CustomInterfaces {
                 readonly primaryRed: string
                 readonly primaryBlack: string
                 readonly secondaryRed: string
+                readonly primaryBlue: string
             }
             readonly bp: {
                 tablet: string
@@ -95,7 +96,12 @@ declare namespace CustomInterfaces {
                 xl: string
             }
             readonly fontSizes: {
+                s: string
                 default: string
+                m: string
+                l: string
+                xl: string
+                jumbo: stringw
             }
             readonly navbar: {
                 height: string
