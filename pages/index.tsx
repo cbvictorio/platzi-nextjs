@@ -23,23 +23,26 @@ const Section = styled(ThemeSection)`
 `
 
 const Home: FC<IProps> = ({ pokemons = [] }) => {
-    return (
-        <Section>
-            <h2>Please click on any pokemon to start navigating, hope you enjoy it!</h2>
-            <h3>
-                This app was created with the
-                <Link href={API_URL}> PokeAPI </Link>
-            </h3>
-            <ul>
-                {pokemons.map(({ name, url }) => (
-                    <li key={`${name}${url}`}>
-                        <PokemonCard pokemon={{ name, url }} />
-                    </li>
-                ))}
-            </ul>
-        </Section>
-    )
+    return <div> aver al cine </div>
 }
+// const Home: FC<IProps> = ({ pokemons = [] }) => {
+//     return (
+//         <Section>
+//             <h2>Please click on any pokemon to start navigating, hope you enjoy it!</h2>
+//             <h3>
+//                 This app was created with the
+//                 <Link href={API_URL}> PokeAPI </Link>
+//             </h3>
+//             <ul>
+//                 {pokemons.map(({ name, url }) => (
+//                     <li key={`${name}${url}`}>
+//                         <PokemonCard pokemon={{ name, url }} />
+//                     </li>
+//                 ))}
+//             </ul>
+//         </Section>
+//     )
+// }
 
 export const getServerSideProps = async () => {
     const response = await PokemonAPI.getPokemonByPagination()

@@ -1,71 +1,73 @@
 import { FC } from 'react'
 import Link from 'next/link'
 import styled from 'styled-components'
-import Section from '@/theme/Section'
-import { useRouter } from 'next/router'
-import Image from 'next/image'
+import { useRouter, NextRouter } from 'next/router'
+import NextImage from 'next/image'
 import pokeball from '@/assets/Poke_Ball.webp'
+import themeTokens from '@/theme/tokens'
 
-type Route = {
-    href: string
-    text: string
-}
-
-const ROUTES: Array<Route> = [
+const ROUTES: Array<Types.Route> = [
     { href: '/', text: 'Home' },
     { href: '/about', text: 'About' },
 ]
 
-// background-color: ${({ theme }: CustomInterfaces.Theme) => theme.colors.primaryRed};
 const Nav = styled.nav`
-    background-color: ${({ theme }: CustomInterfaces.Theme) => theme.colors.primaryRed};
-    height: ${({ theme }: CustomInterfaces.Theme) => theme.navbar.height};
-    padding: 0 ${({ theme }: CustomInterfaces.Theme) => theme.spaces.m};
+    background-color: ${({ theme }: Interfaces.Theme) => theme.colors.primaryRed};
+    height: ${({ theme }: Interfaces.Theme) => theme.navbar.height};
     margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     position: sticky;
     top: 0;
 
-    section {
+    ${themeTokens.bp.tablet} {
+        border: 3px solid blue;
+    }
+
+    > div {
         display: flex;
         align-items: center;
+        justify-content: center;
         height: 100%;
+        max-width: ${themeTokens.navbar.width};
+        margin: auto;
+
+        a.active-link {
+            text-decoration: underline;
+        }
 
         a {
-            padding: 0 ${({ theme }: CustomInterfaces.Theme) => theme.spaces.l};
-            text-decoration: none;
-            color: white;
             height: 100%;
             display: flex;
             align-items: center;
+            color: white;
+            text-decoration: none;
 
-            &:hover {
-                background-color: ${({ theme }: CustomInterfaces.Theme) =>
-                    theme.colors.secondaryRed};
-                text-decoration: underline;
+            span {
+                margin-inline: ${({ theme }: Interfaces.Theme) => theme.spaces.xs};
+
+                ${themeTokens.bp.tablet} {
+                    margin-inline: ${({ theme }: Interfaces.Theme) => theme.spaces.s};
+                }
             }
         }
     }
 `
 
 const Navbar: FC = () => {
-    const { pathname } = useRouter()
+    const { pathname }: NextRouter = useRouter()
     return (
-        <Nav>
-            <Section>
-                {ROUTES.map(({ href, text }: Route) => (
+        <Nav tabIndex={-1}>
+            <div tabIndex={-1}>
+                {ROUTES.map(({ href, text }: Types.Route) => (
                     <Link key={href} href={href}>
-                        <a href={href}>
+                        <a href={href} {...(pathname === href && { className: 'active-link' })}>
                             {pathname === href && (
-                                <Image height={30} width={30} src={pokeball} className='pokeball' />
+                                <NextImage height={20} width={20} src={pokeball} className='pokeball' />
                             )}
-                            {text}
+                            <span>{text}</span>
                         </a>
                     </Link>
                 ))}
-            </Section>
+            </div>
         </Nav>
     )
 }

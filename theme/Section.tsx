@@ -1,18 +1,13 @@
 import { FC } from 'react'
 import styled from 'styled-components'
 import themeTokens from './tokens'
-interface IProps extends CustomInterfaces.ReactChildren {
+interface IProps extends Interfaces.ReactChildren {
     className?: string
 }
 
 const StyledSection = styled.section`
-    max-width: ${({ theme }: CustomInterfaces.Theme) => `${theme.section.maxWidth}px`};
+    max-width: ${({ theme }: Interfaces.Theme) => `${theme.section.maxWidth}px`};
     margin: auto;
-    padding: ${themeTokens.spaces.m};
-
-    ${themeTokens.mq.tablet} {
-        padding: ${themeTokens.spaces.xl};
-    }
 `
 
 const Section: FC<IProps> = ({ children, className, ...props }) => (

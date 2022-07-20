@@ -1,16 +1,10 @@
-const breakpoints = (bp: string) => `@media only screen and (min-width: ${bp})`
-
 const bp = {
-    tablet: '760px',
-    desktop: '1024px',
+    tablet: '@media only screen and (min-width: 760px)',
+    desktop: '@media only screen and (min-width: 1024px)',
 }
 
 const themeTokens = {
     bp,
-    mq: {
-        tablet: breakpoints(bp.tablet),
-        desktop: breakpoints(bp.desktop),
-    },
     colors: {
         primaryRed: '#ef5350',
         secondaryRed: '#c62828',
@@ -37,6 +31,7 @@ const themeTokens = {
     },
     navbar: {
         height: '80px',
+        width: '1280px',
     },
 }
 

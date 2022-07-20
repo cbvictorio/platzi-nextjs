@@ -1,32 +1,56 @@
 import { FC } from 'react'
 import PokemonAPI from '@/db'
 import { GetStaticProps } from 'next'
+import ThemeSection from '@/theme/Section'
+import styled from 'styled-components'
+import Image from 'next/image'
+
+const POKEMON_IMG_SIZE = 80
 
 type IProps = {
     pokemonData: FetchSinglePokemonDataResponse
     slug?: PokemonSlug
 }
 
+const Section = styled(ThemeSection)`
+    border: 3px solid ${({ theme }: CustomInterfaces.Theme) => theme.colors.primaryBlack};
+    border-radius: 5px;
+    margin: ${({ theme }: CustomInterfaces.Theme) => theme.spaces.m} auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    & > div {
+        display: flex;
+        align-items: center;
+        margin: 0;
+        strong {
+            font-size: ${({ theme }: CustomInterfaces.Theme) => theme.fontSizes.xl};
+            text-transform: capitalize;
+        }
+    }
+`
+
 const Product: FC<IProps> = ({ pokemonData, slug }: IProps) => {
-    const { id, name } = pokemonData as SinglePokemonData
+    const { id, name, sprites } = pokemonData as SinglePokemonData
     const { error, message } = pokemonData as GenericError
 
     if (error) {
         return (
-            <div>
+            <Section>
                 <h1> There was an error while retrieving the following pokemon: {slug} </h1>
                 <p> {message} </p>
-            </div>
+            </Section>
         )
     }
 
     return (
-        <div>
-            <h1> Pokemon ID: {id} </h1>
-            <h2> Pokemon Name: {name} </h2>
-            <br />
-            <p> Pokemon Data: </p>
-        </div>
+        <Section>
+            <div>
+                <Image width={POKEMON_IMG_SIZE} height={POKEMON_IMG_SIZE} src={sprites.front_default as string} />
+                <strong> {`${name} (${id})`} </strong>
+            </div>
+        </Section>
     )
 }
 

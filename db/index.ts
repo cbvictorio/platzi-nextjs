@@ -22,8 +22,7 @@ const getPokemonByNameOrId = async (slug: PokemonSlug): Promise<FetchSinglePokem
 
     const pokemonResult: FetchSinglePokemonDataResponse = await fetchPokemon(`/${slug}`)
 
-    const { id, name, sprites, abilities, types, weight, location_area_encounters } =
-        pokemonResult as SinglePokemonData
+    const { id, name, sprites, abilities, types, weight, location_area_encounters } = pokemonResult as SinglePokemonData
 
     const { error, message } = pokemonResult as GenericError
 
@@ -47,18 +46,14 @@ const getPokemonByPagination = async (
 
     const paginationUrl: string = `?limit=${limit}&offset=${offset}`
 
-    const fetchPaginationResults: FetchPaginatedPokemonDataResponse = await fetchPokemon(
-        paginationUrl
-    )
+    const fetchPaginationResults: FetchPaginatedPokemonDataResponse = await fetchPokemon(paginationUrl)
 
     return fetchPaginationResults
 }
 
 type PokemonAPI = {
     getPokemonByNameOrId: (slug: PokemonSlug) => Promise<FetchSinglePokemonDataResponse>
-    getPokemonByPagination: (
-        options?: PaginationOptions
-    ) => Promise<FetchPaginatedPokemonDataResponse>
+    getPokemonByPagination: (options?: PaginationOptions) => Promise<FetchPaginatedPokemonDataResponse>
 }
 
 const PokemonAPI: PokemonAPI = {
